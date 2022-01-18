@@ -13,6 +13,7 @@ MN(){
     run     menjalankan flutter di emulator
     emu     melihat emolator yang bisa dijaankan
     emur    membuka emulator
+    push    push ke github repository
 
     ------------------------------------------------
     Malikkurosaki@2022               version 1.0.0.1
@@ -26,5 +27,6 @@ case $P in
 run) flutter run ;;
 emu) flutter devices ;;
 emur) flutter emulators --launch Pixel_3_API_27 ;;
+push) git add . && git commit -m $C && git push origin main ;;
 *) echo $D"pilih menu yang ada saja"$B
 esac
