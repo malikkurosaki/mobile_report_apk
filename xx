@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+A=$(tput setaf 2)
+B=$(tput setaf 7)
+C=$(date +"%d%m%y_%T")
+D=$(tput setaf 1)
+
+MN(){
+    M="
+    ------------------------------------------------
+    Probus Mobile Report                        Menu
+    ------------------------------------------------
+    run     menjalankan flutter di emulator
+    emu     melihat emolator yang bisa dijaankan
+    emur    membuka emulator
+
+    ------------------------------------------------
+    Malikkurosaki@2022               version 1.0.0.1
+    "
+    echo $A"$M"$B
+}
+MN
+echo -n "Ketikkan Pilihannya ?: "
+read P
+case $P in
+run) flutter run ;;
+emu) flutter devices ;;
+emur) flutter emulators --launch Pixel_3_API_27 ;;
+*) echo $D"pilih menu yang ada saja"$B
+esac
