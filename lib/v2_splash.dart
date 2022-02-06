@@ -6,19 +6,20 @@ import 'package:mobile_report/app/home.dart';
 import 'package:mobile_report/app/v2_home.dart';
 import 'package:mobile_report/intro.dart';
 import 'package:mobile_report/login.dart';
+import 'package:mobile_report/v2_intro.dart';
 import 'package:mobile_report/v2_val.dart';
 
 import 'pref.dart';
 import 'v2_pref.dart';
 
-class Splash extends StatefulWidget {
-  const Splash({Key? key}) : super(key: key);
+class V2Splash extends StatefulWidget {
+  const V2Splash({Key? key}) : super(key: key);
 
   @override
-  State<Splash> createState() => _SplashState();
+  State<V2Splash> createState() => _V2SplashState();
 }
 
-class _SplashState extends State<Splash> {
+class _V2SplashState extends State<V2Splash> {
 
   @override
   void initState() {
@@ -46,7 +47,7 @@ class _SplashState extends State<Splash> {
             Center(
               child: Text(
                 "MOBILE\rREPORT",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.grey[900]),
               ),
             ),
             Positioned(
@@ -66,13 +67,12 @@ class _SplashState extends State<Splash> {
   Future<void> onLoad() async {
 
     await 3.delay();
-    if (V2Val.isIntro.value) {
-      Get.offAll(Intro());
+    if (V2Pref.isIntro().get()??true) {
+      Get.offAll(V2Intro());
       return;
     }
 
-    print(V2Val.user.value);
-    if (V2Val.user.value.email == null) {
+    if (V2Pref.user().get() == null) {
       Get.offAll(Login());
       return;
     }

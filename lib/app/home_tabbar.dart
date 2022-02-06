@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:mobile_report/Val.dart';
 
 class HomeTabbar extends StatelessWidget {
   HomeTabbar({Key? key}) : super(key: key);
-  final listTab = ["Dashboard", "Dua", "Tiga"];
+  
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class HomeTabbar extends StatelessWidget {
         fontSize: 18
       ),
       tabs: [
-        for (final t in listTab)
+        for (final t in Val.listTab)
           Container(
             width: Get.width / 3,
             color: Colors.grey[100],

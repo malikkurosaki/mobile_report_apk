@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+const arg = process.argv.slice(2);
+const fs = require('fs');
+
+// model
+
+/**
+ * @typedef {{
+    "url": "",
+    "urlDev": "",
+    "dev": true
+}} ModelConfig
+ */
+
+
+const config = fs.readFileSync('config.json')
+/**@type {ModelConfig} */
+const cfg = JSON.parse(config.toString())
+
+switch (arg[0]){
+    case "dev":
+        cfg.dev = true;
+        fs.writeFileSync('config.json', JSON.stringify(cfg, null, 2))
+    break;
+    case "pro":
+        cfg.dev = false;
+        fs.writeFileSync('config.json', JSON.stringify(cfg, null, 2))
+    break;
+    default: console.log("menu gak ada")
+}

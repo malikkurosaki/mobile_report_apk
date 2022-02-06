@@ -43,6 +43,11 @@ dependencies:
   syncfusion_flutter_datepicker: ^19.4.42
   flutter_slidable: ^1.2.0
   http:
+  flutter_dotenv: ^5.0.2
+  fwfh_webview: ^0.6.2+1
+  webviewx: ^0.2.1
+  easy_web_view2: ^0.0.3
+  dart_eval: ^0.0.4
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +74,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - .env
+    - config.json
+    - v2_config.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

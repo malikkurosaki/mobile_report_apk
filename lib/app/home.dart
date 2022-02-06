@@ -1,3 +1,4 @@
+import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:getwidget/getwidget.dart';
@@ -5,9 +6,12 @@ import 'package:mobile_report/Val.dart';
 import 'package:mobile_report/app/dashboard.dart';
 import 'package:mobile_report/app/home_appbar.dart';
 import 'package:mobile_report/app/home_tabbar.dart';
+import 'package:mobile_report/app/view_sales_avarage.dart';
+import 'package:mobile_report/app/view_sales_performance.dart';
 import 'package:mobile_report/conn.dart';
 import 'package:get/get.dart';
 import 'package:mobile_report/models.dart';
+import 'package:mobile_report/util.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class Home extends StatefulWidget {
@@ -20,22 +24,17 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   void initState() {
-    homeinit();
+    Util().init();
+    Util().loadDashboard();
     super.initState();
-  }
-
-  homeinit() async {
-    await Util().init();
-    await Util().loadDashboard();
-    await Util().loadMasterDep();
-    await Util().loadMasterOut();
   }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: Val.listTab.length,
       child: Scaffold(
+        backgroundColor: Colors.grey.withOpacity(0.2),
         bottomNavigationBar: HomeTabbar(),
         body: NestedScrollView(
           physics: BouncingScrollPhysics(),
@@ -45,8 +44,13 @@ class _HomeState extends State<Home> {
           body: TabBarView(
             children: [
               Dashboard(),
-              Text("dua"),
-              Text("dua"),
+              ViewSalesPerformance(
+                animate: true,
+              ),
+              ViewSalesAvarage(
+                animate: true,
+              ),
+              Text("Empat")
             ],
           ),
         ),

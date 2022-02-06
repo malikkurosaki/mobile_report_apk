@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
@@ -14,13 +17,209 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Val.listDashboard.isEmpty 
+      () => Val.listDashboard.isEmpty
           ? Center(child: Text("Data empty"))
           : ListView(
               physics: BouncingScrollPhysics(),
               children: [
-                for (final p in Val.listDashboard) 
-                kotakBox(p)
+                for (final p in Val.listDashboard) kotakBox(p),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(16),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 16),
+                              child: Text("Total Revenue",
+                                  style: TextStyle(
+                                      fontSize: 32,
+                                      color: Colors.grey[700],
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        Val.totalRevenue.value.gross.toString(),
+                                        style: TextStyle(
+                                            fontSize: 24,
+                                            color: Colors.teal,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text("Gross"),
+                                      Divider(),
+                                      Text(
+                                          Val.totalRevenue.value.net.toString(),
+                                          style: TextStyle(
+                                              fontSize: 24,
+                                              color: Colors.teal,
+                                              fontWeight: FontWeight.bold)),
+                                      Text("Net"),
+                                      Divider(),
+                                      Text(
+                                          Val.totalRevenue.value.total
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontSize: 24,
+                                              color: Colors.teal,
+                                              fontWeight: FontWeight.bold)),
+                                      Text("Total"),
+                                      Divider(),
+                                    ],
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(8),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                              Val.totalRevenue.value.bill
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  fontSize: 32,
+                                                  color: Colors.cyan,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                            "Total Pax",
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.all(8),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                              Val.totalRevenue.value.pax
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  fontSize: 32,
+                                                  color: Colors.cyan,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text("Total Bill"),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ]),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            child: Text("Avarage Bill / Pax",
+                                style: TextStyle(
+                                    fontSize: 32,
+                                    color: Colors.grey[700],
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      Val.totalRevenue.value.gross.toString(),
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          color: Colors.teal,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text("Gross"),
+                                    Divider(),
+                                    Text(Val.averageBillPax.value.net.toString(),
+                                        style: TextStyle(
+                                            fontSize: 24,
+                                            color: Colors.teal,
+                                            fontWeight: FontWeight.bold)),
+                                    Text("Net"),
+                                    Divider(),
+                                    Text(
+                                        Val.averageBillPax.value.total.toString(),
+                                        style: TextStyle(
+                                            fontSize: 24,
+                                            color: Colors.teal,
+                                            fontWeight: FontWeight.bold)),
+                                    Text("Total"),
+                                    Divider(),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            child: Text("Compliment Gross",
+                                style: TextStyle(
+                                    fontSize: 32,
+                                    color: Colors.grey[700],
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      Val.complimentGross.value.food.toString(),
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          color: Colors.teal,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text("Food"),
+                                    Divider(),
+                                    Text(Val.complimentGross.value.beverage.toString(),
+                                        style: TextStyle(
+                                            fontSize: 24,
+                                            color: Colors.teal,
+                                            fontWeight: FontWeight.bold)),
+                                    Text("Beverage"),
+                                    Divider(),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                )
               ],
             ),
     );
@@ -40,7 +239,11 @@ class Dashboard extends StatelessWidget {
             child: Stack(
               children: [
                 Container(
-                  color: p.name == "food"? Colors.green.withOpacity(0.9): p.name == "beverage"? Colors.red.withOpacity(0.9): Colors.orange.withOpacity(0.9),
+                  color: p.name == "food"
+                      ? Colors.green.withOpacity(0.9)
+                      : p.name == "beverage"
+                          ? Colors.red.withOpacity(0.9)
+                          : Colors.orange.withOpacity(0.9),
                   width: double.infinity,
                   height: double.infinity,
                 ),
@@ -70,8 +273,9 @@ class Dashboard extends StatelessWidget {
                                           ? "Rp 0,-"
                                           : NumberFormat.simpleCurrency(
                                                   locale: 'id-Id')
-                                              .format(
-                                                  int.parse(p.data!.sSum!.net!.toString())),
+                                              .format(int.parse(p
+                                                  .data!.sSum!.net!
+                                                  .toString())),
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontStyle: FontStyle.italic),
@@ -125,12 +329,13 @@ class Dashboard extends StatelessWidget {
                         p.data!.sSum!.gtotal == null
                             ? "Rp 0,-"
                             : NumberFormat.simpleCurrency(locale: "id-ID")
-                                .format(int.parse(p.data!.sSum!.gtotal!.toString())),
+                                .format(int.parse(
+                                    p.data!.sSum!.gtotal!.toString())),
                         style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
-                      )
+                      ),
                     ],
                   ),
                 ),

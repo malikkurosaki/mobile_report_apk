@@ -2,8 +2,31 @@
 
 A=$(tput setaf 2)
 B=$(tput setaf 7)
-C=$(date +"%d%m%y_%T")
-D=$(tput setaf 1)
+ERR=$(tput setaf 1)
+UUID=$(uuidgen)
+DATE=$(date +"%d%m%y-%T")
+
+KY="storePassword=makuro123
+keyPassword=makuro123
+keyAlias=malikkurosaki
+storeFile=/Users/probus/Documents/malikkurosaki.jks
+"
+
+CARI='
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+'
+REP='apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+'
+
+RELEASE(){
+    FL="./android/key.properties"
+    [[ ! -f $FL ]] && echo -e "$KY" > $FL
+    sed -i.bak "s/$CARI/$REP" z.txt
+}
+
+
 
 MN(){
     M="
@@ -14,9 +37,11 @@ MN(){
     emu     melihat emolator yang bisa dijaankan
     emur    membuka emulator
     push    push ke github repository
+    rels    membuat release
 
     ------------------------------------------------
     Malikkurosaki@2022               version 1.0.0.1
+    $UUID
     "
     echo $A"$M"$B
 }
@@ -27,6 +52,7 @@ case $P in
 run) flutter run ;;
 emu) flutter devices ;;
 emur) flutter emulators --launch Pixel_3_API_27 ;;
-push) git add . && git commit -m $C && git push origin main ;;
-*) echo $D"pilih menu yang ada saja"$B
+push) git add . && git commit -m $DATE && git push origin main ;;
+rels) flutter build apk --release --split-per-abi ;;
+*) echo $ERR"pilih menu yang ada saja"$B
 esac

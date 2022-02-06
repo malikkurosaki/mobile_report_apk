@@ -6,14 +6,14 @@ extension Textputih on Text {
     return Text(
       data!,
       style:
-          TextStyle(color: Colors.blue[200], fontSize: 16, fontWeight: FontWeight.bold),
+          TextStyle(color: Color.fromARGB(255, 51, 51, 51), fontSize: 16, fontWeight: FontWeight.bold),
     );
   }
 
   txtMenuBold() => Text(
         data!,
         style: TextStyle(
-          color: Colors.grey[200],
+          color: Color.fromARGB(255, 70, 70, 70),
           fontSize: 16,
         ),
       );

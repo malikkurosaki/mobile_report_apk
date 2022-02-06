@@ -4,30 +4,38 @@ import 'package:get/instance_manager.dart';
 import 'package:get/get.dart';
 import 'package:mobile_report/Val.dart';
 import 'package:mobile_report/splash.dart';
+import 'package:mobile_report/v2_pref.dart';
+import 'package:mobile_report/v2_splash.dart';
+import 'package:mobile_report/v2_val.dart';
 
 import 'pref.dart';
 
-class Intro extends StatelessWidget {
-  Intro({Key? key}) : super(key: key);
-  PageController controller = PageController();
+class V2Intro extends StatelessWidget {
+  V2Intro({Key? key}) : super(key: key);
+  final controller = PageController();
   final pageIndex = 0.obs;
+  
   final listIntro = [
-    IntroItem(
+    V2IntroItem(
       title: "Judul Satu",
       subTitle: "sub title",
-      bgColor: Colors.blue
+      bgColor: Colors.blue,
+      icon: Icons.note_alt_outlined
     ),
-    IntroItem(
+    V2IntroItem(
       title: "Judul dua",
       subTitle: "sub dua",
-      bgColor: Colors.green
+      bgColor: Colors.green,
+      icon: Icons.add_chart_outlined
     ),
-    IntroItem(
+    V2IntroItem(
       title: "Judul tiga",
       subTitle: "sub tiga",
-      bgColor: Colors.red
+      bgColor: Colors.red,
+      icon: Icons.money
     )
-  ].obs;
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +54,43 @@ class Intro extends StatelessWidget {
                 Stack(
                   children: [
                     Container(
-                      color: a.bgColor,
-                      child: Center(
-                        child: Text(a.title!),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            a.bgColor!,
+                            Colors.black
+                          ]
+                        )
                       ),
+                      child: Center(
+                        child: Icon(a.icon,
+                          size: 120,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 100,
+                      right: 0,
+                      left: 0,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(a.title.toString(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24
+                            ),
+                          ),
+                          Text(a.subTitle.toString(),
+                            style: TextStyle(
+                              color: Colors.grey[200]
+                            ),
+                          )
+                        ],
+                      )
                     )
                   ],
                 )
@@ -60,7 +101,6 @@ class Intro extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(8),
               height: 70,
-              color: Colors.black45,
               width: Get.width,
               child: Obx(
                 () => Row(
@@ -78,7 +118,7 @@ class Intro extends StatelessWidget {
                             ),
                             margin: EdgeInsets.all(2),
                             padding: EdgeInsets.all(4),
-                            width: 40,
+                            width: 30,
                             height: 5,
                             
                           )
@@ -87,8 +127,9 @@ class Intro extends StatelessWidget {
                     ),
                     pageIndex.value == (listIntro.length -1) ? TextButton(
                       onPressed: () {
-                        Pref.isIntro().set(false);
-                        Get.off(Splash());
+                        V2Val.isIntro.value = false;
+                        V2Pref.isIntro().set(false);
+                        Get.offAll(V2Splash());
                       },
                       child: Text("NEXT",
                         style: TextStyle(
@@ -111,11 +152,12 @@ class Intro extends StatelessWidget {
   }
 }
 
-class IntroItem{
+class V2IntroItem{
   String? title;
   String? subTitle;
   String? image;
+  IconData? icon;
   Color? bgColor;
 
-  IntroItem({this.title, this.subTitle, this.image, this.bgColor});
+  V2IntroItem({this.title, this.subTitle, this.image, this.bgColor, this.icon});
 }
