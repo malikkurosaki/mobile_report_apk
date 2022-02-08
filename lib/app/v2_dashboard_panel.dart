@@ -53,7 +53,7 @@ class V2DashboardPanel extends StatelessWidget {
                       child: V2Val.tanggal1.value == V2Val.tanggal2.value?
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(DateFormat('dd/mm/yy').format(V2Val.tanggal1.value),
+                        child: Text(DateFormat('dd/MM/yy').format(V2Val.tanggal1.value),
                           style: style1,
                         ),
                       )
@@ -63,7 +63,7 @@ class V2DashboardPanel extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.all(8),
                               child: Text(
-                                DateFormat('d/M/y')
+                                DateFormat('d/MM/y')
                                     .format(V2Val.tanggal1.value),
                                 style: style1,
                               ),
@@ -74,7 +74,7 @@ class V2DashboardPanel extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.all(8),
                               child: Text(
-                                DateFormat('d/M/y')
+                                DateFormat('d/MM/y')
                                     .format(V2Val.tanggal2.value),
                                 style: style1,
                               ),

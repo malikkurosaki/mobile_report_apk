@@ -24,7 +24,6 @@ class V2ModelConfig {
 }
 
 
-
 class V2ModelFood {
   String? net;
   String? gtotal;
@@ -51,7 +50,7 @@ class V2ModelFood {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['net'] = net;
     data['gtotal'] = gtotal;
     data['total'] = total;
@@ -149,6 +148,26 @@ class V2ModelTotalRevenue {
     return data;
   }
 }
+
+class V2ModelTop10 {
+  String? id;
+  int? qty;
+
+  V2ModelTop10({this.id, this.qty});
+
+  V2ModelTop10.fromJson(Map<String, dynamic> json) {
+    id = json['Id'];
+    qty = json['qty'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['Id'] = this.id;
+    data['qty'] = this.qty;
+    return data;
+  }
+}
+
 
 
 

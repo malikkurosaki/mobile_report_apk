@@ -278,7 +278,7 @@ class V2DashboardOption extends StatelessWidget {
                             V2Val.dep.value = dep.value;
                             V2Val.out.value = out.value;
 
-                            await V2Util().load();
+                            V2Util().load();
                             Get.back();
                           },
                           child: Text(

@@ -18,10 +18,13 @@ class V2Val {
   static final totalRevenue = V2ModelTotalRevenue().obs;
   static final salesPerformanceWeek = V2ModelSalesPerformanceWeek().obs;
   static final salesPerformanceMonth = V2ModelSalesPerformanceWeek().obs;
+  static final listUser = <V2ModelUser>[].obs;
 
   static final user = V2ModelUser().obs;
   static final isIntro = true.obs;
 
-  
+  static final top10Food = <V2ModelTop10>[].obs;
+  static final top10Beverage = <V2ModelTop10>[].obs;
+  static final top10Other = <V2ModelTop10>[].obs;
   
 }

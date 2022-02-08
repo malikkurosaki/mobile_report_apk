@@ -33,9 +33,11 @@ class V2Dashboard extends StatelessWidget {
               onDetail: () {
                 Get.to(
                     V2DashboardDetail(
+                      lsTop10: V2Val.top10Food,
                       title: "Food",
                       heroTag1: "food",
                       icon1: Icons.restaurant,
+                      modelData: V2Val.food.value,
                     ),
                     transition: Transition.noTransition,
                     duration: Duration(milliseconds: 500));
@@ -57,12 +59,14 @@ class V2Dashboard extends StatelessWidget {
               onDetail: () {
                 Get.to(
                     V2DashboardDetail(
+                      lsTop10: V2Val.top10Beverage,
                       title: "Beverage",
                       heroTag1: "beverage",
                       icon1: Icons.coffee,
+                      modelData: V2Val.beverage.value,
                     ),
                     transition: Transition.noTransition,
-                    duration: Duration(seconds: 1));
+                    duration: Duration(milliseconds: 500));
               },
               title: "Beverage",
               value: NumberFormat.simpleCurrency(locale: "id-ID").format(
@@ -79,12 +83,14 @@ class V2Dashboard extends StatelessWidget {
               onDetail: () {
                 Get.to(
                     V2DashboardDetail(
+                      lsTop10: V2Val.top10Other,
+                      modelData: V2Val.other.value,
                       title: "Other",
                       heroTag1: "other",
                       icon1: Icons.fastfood,
                     ),
                     transition: Transition.noTransition,
-                    duration: Duration(seconds: 1));
+                    duration: Duration(milliseconds: 500));
               },
               title: "Others",
               value: NumberFormat.simpleCurrency(locale: "id-ID").format(
@@ -106,19 +112,22 @@ class V2Dashboard extends StatelessWidget {
                       Text("Total",
                         style: TextStyle(
                           fontSize: 24,
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white54
                         ),
                       ),
                       Text("Revenue",
                         style: TextStyle(
                           fontSize: 42,
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white54
                         ),
                       ),
                       Text(NumberFormat.simpleCurrency(locale: "id-ID").format(V2Val.totalRevenue.value.gtotal == null ? 0: int.parse(V2Val.totalRevenue.value.gtotal.toString())), 
                         style: TextStyle(
                           fontSize: 42,
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54
                         ),
                       )
                     ],

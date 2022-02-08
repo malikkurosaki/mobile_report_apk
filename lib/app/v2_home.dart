@@ -85,7 +85,8 @@ class _V2HomeState extends State<V2Home> {
                                               onTap: () => Get.to(V2Profile(),
                                                   transition:
                                                       Transition.noTransition,
-                                                  duration: Duration(milliseconds: 500)),
+                                                  duration: Duration(
+                                                      milliseconds: 500)),
                                               child: Icon(
                                                 Icons.account_circle,
                                                 size: 56,
@@ -94,14 +95,23 @@ class _V2HomeState extends State<V2Home> {
                                             ),
                                           ),
                                         ),
-                                        Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            V2Val.user.value.name.toString(),
-                                            style: TextStyle(
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.grey[700]),
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: () {
+                                              Get.dialog(AlertDialog(
+                                                content: Text(V2Pref.user()
+                                                    .get()
+                                                    .toString()),
+                                              ));
+                                            },
+                                            child: Text(
+                                              V2Val.user.value.name.toString(),
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.grey[700]),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -110,7 +120,7 @@ class _V2HomeState extends State<V2Home> {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
-                                      Align(
+                                      const Align(
                                         alignment: Alignment.topRight,
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -124,7 +134,8 @@ class _V2HomeState extends State<V2Home> {
                                         alignment: Alignment.bottomRight,
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text(DateFormat('dd/mm/yyyy').format(DateTime.now())),
+                                          child: Text(DateFormat('dd/mm/yyyy')
+                                              .format(DateTime.now())),
                                         ),
                                       )
                                     ],
@@ -142,7 +153,12 @@ class _V2HomeState extends State<V2Home> {
             )
           ],
           body: TabBarView(
-            children: [V2Dashboard(), V2SalesPerformanceDay(), V2SalesPerformanceWeek(), V2SalesPerformanceMonth()],
+            children: [
+              const V2Dashboard(),
+              V2SalesPerformanceDay(),
+              const V2SalesPerformanceWeek(),
+              const V2SalesPerformanceMonth()
+            ],
           ),
         ),
       ),

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/instance_manager.dart';
+import 'package:mobile_report/app/v2_developer.dart';
 import 'package:mobile_report/pref.dart';
 import 'package:get/get.dart';
 import 'package:mobile_report/splash.dart';
+import 'package:mobile_report/v2_models.dart';
 import 'package:mobile_report/v2_pref.dart';
 import 'package:mobile_report/v2_splash.dart';
+import 'package:mobile_report/v2_util.dart';
 import 'package:mobile_report/v2_val.dart';
 
 class V2Profile extends StatelessWidget {
@@ -45,7 +48,9 @@ class V2Profile extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            V2Val.user.value.name.toString(),
+                            V2ModelUser.fromJson(V2Pref.user().get())
+                                .name
+                                .toString(),
                             style: TextStyle(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
@@ -62,10 +67,30 @@ class V2Profile extends StatelessWidget {
                 title: Text("Logout"),
                 leading: Icon(Icons.logout),
                 onTap: () {
-                  EasyLoading.showError("kerjakan disini");
-                  V2Pref.user().del();
-                  Get.offAll(V2Splash());
+                  Get.dialog(AlertDialog(
+                    title: Text("Logout"),
+                    content: Text("Logout ?"),
+                    actions: [
+                      OutlinedButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          child: Text("NO")),
+                      TextButton(
+                          onPressed: () {
+                            EasyLoading.showError("kerjakan disini");
+                            V2Pref.user().del();
+                            Get.offAll(V2Splash());
+                          },
+                          child: Text("YES"))
+                    ],
+                  ));
                 },
+              ),
+              ListTile(
+                leading: Icon(Icons.bug_report),
+                title: Text("Developer"),
+                onTap: () => Get.to(V2Developer()),
               )
             ],
           ),

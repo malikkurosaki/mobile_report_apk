@@ -13,14 +13,21 @@ class V2Conn extends GetConnect{
   Future<Response> beverage() => get(url!+'/'+getPropertyDashBoard("beverage"));
   Future<Response> other() => get(url!+'/'+getPropertyDashBoard("other"));
 
+  Future<Response> top10Food() => get(url!+'/'+getPropertyDashBoard("top10Food"));
+  Future<Response> top10Beverage() => get(url!+'/'+getPropertyDashBoard("top10Beverage"));
+  Future<Response> top10Other() => get(url!+'/'+getPropertyDashBoard("top10Other"));
 
   Future<Response> masterDep() => get(url!+'/masterDep');
   Future<Response> masterOut() => get(url!+'/masterOut');
+  Future<Response> listUser() => get(url!+'/listUser');
 
   Future<Response> login(Map<String, dynamic> body) => post(url!+'/login', body);
   Future<Response> totalRevenue() => get(url!+'/'+getPropertyDashBoard("totalRevenue"));
 
   Future<Response> salesPerformanceWeek() => get(url!+'/salesPerformanceWeek?date='+V2Val.tanggal1.toString());
   Future<Response> salesPerformanceMonth() => get(url!+'/salesPerformanceMonth?date='+V2Val.tanggal1.toString());
+
+  Future<Response> register(Map<String, dynamic> body) => post(url!+'/register', body);
+
 
 }
