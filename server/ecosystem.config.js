@@ -3,7 +3,7 @@ module.exports = {
       {
         name: "mobile_report",
         script: "./index.js",
-        watch: true
+        watch: false
       }
   ]
 }
