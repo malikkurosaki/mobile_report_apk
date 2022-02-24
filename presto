@@ -65,13 +65,13 @@ if [[ $# -eq 1 ]]; then
         ;;
     push | -p)
         echo $ENV_PRO >server/.env
-        echo -e $CONFIG_PRO > lib/config.dart
+        # echo -e $CONFIG_PRO > lib/config.dart
         flutter build web --release
         git add .
         git commit -m "update"
         git push origin main
         echo $ENV_DEV >server/.env
-         echo -e $CONFIG_DEV > lib/config.dart
+        #  echo -e $CONFIG_DEV > lib/config.dart
         $LOGIN -t "cd mobile_report_apk && git pull origin main && cd server && source ~/.nvm/nvm.sh && npm install && prisma generate && pm2 restart all"
         ;;
     seed | -s)
