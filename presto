@@ -48,7 +48,7 @@ if [[ $# -eq 1 ]]; then
         git commit -m "update"
         git push origin main
         echo $ENV_DEV >server/.env
-        $LOGIN -t "cd mobile_report_apk && source /.env/env.sh && pm2 -v"
+        $LOGIN -t "cd mobile_report_apk && cd server && source ~/.nvm/nvm.sh && pm2 -v && npm -v && node -v "
         ;;
     *) echo "-h help" ;;
     esac
