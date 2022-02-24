@@ -5,6 +5,27 @@ TIME=$(date +%Y%m%d%H%M%S)
 LOGIN="sshpass -p StartOurDream2022 ssh posapp@116.193.191.104"
 ENV_DEV="DATABASE_URL=\"mysql://root:Makuro_123@localhost:3306/dbreportmobile\""
 ENV_PRO="DATABASE_URL=\"mysql://probus:7971515@localhost:3306/dbtgho\""
+CONFIG_DEV="
+class Config{
+    static const isDevAndroid = false;
+    static const isDevWeb = true;
+    static const weblUrl = 'http://localhost:3000/apiv2';
+    static const androidUrl = 'http://10.0.2.2:3000/apiv2';
+    static const serverUrl = 'https://188.166.218.138:3000/apiv2';
+    static const getUrl = isDevAndroid? androidUrl : isDevWeb? weblUrl : serverUrl;
+}
+"
+
+CONFIG_PRO="
+class Config{
+  static const isDevAndroid = false;
+  static const isDevWeb = false;
+  static const weblUrl = 'http://localhost:3000/apiv2';
+  static const androidUrl = 'http://10.0.2.2:3000/apiv2';
+  static const serverUrl = 'https://188.166.218.138:3000/apiv2';
+  static const getUrl = isDevAndroid? androidUrl : isDevWeb? weblUrl : serverUrl;
+}
+"
 help() {
     echo "$(tput setaf 2)
 Name:
@@ -44,11 +65,13 @@ if [[ $# -eq 1 ]]; then
         ;;
     push | -p)
         echo $ENV_PRO >server/.env
+        echo -e $CONFIG_PRO > lib/config.dart
         flutter build web --release
         git add .
         git commit -m "update"
         git push origin main
         echo $ENV_DEV >server/.env
+         echo -e $CONFIG_DEV > lib/config.dart
         $LOGIN -t "cd mobile_report_apk && git pull origin main && cd server && source ~/.nvm/nvm.sh && npm install && prisma generate && pm2 restart all"
         ;;
     seed | -s)
