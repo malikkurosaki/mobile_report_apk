@@ -1,6 +1,7 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:mobile_report/models.dart';
+import 'package:mobile_report/my_router.dart';
 import 'package:mobile_report/v2_conn.dart';
 import 'package:mobile_report/v2_models.dart';
 import 'package:mobile_report/v2_pref.dart';
@@ -84,12 +85,13 @@ class V2Util {
   }
 
   Future login(Map<String, dynamic> body) async {
+   
     try {
       final data = await V2Conn().login(body);
       if (data.body['success']) {
-        V2Val.user.value = V2ModelUser.fromJson(data.body['data']);
+        // V2Val.user.value = V2ModelUser.fromJson(data.body['data']);
         V2Pref.user().set(data.body['data']);
-        Get.offAll(V2Splash());
+        MyRouter.root().goOff();
       } else {
         EasyLoading.showError(data.body['message']);
       }

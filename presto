@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# get time
+TIME=$(date +%Y%m%d%H%M%S)
+LOGIN="sshpass -p StartOurDream2022 ssh posapp@116.193.191.104"
+ENV_DEV="DATABASE_URL=\"mysql://root:Makuro_123@localhost:3306/dbreportmobile\""
+ENV_PRO="DATABASE_URL=\"mysql://probus:7971515@localhost:3306/dbreportmobile\""
+help() {
+    echo "$(tput setaf 2)
+Name:
+    presto
+Usage:
+    presto [options] | ./presto [options]
+Options: 
+    runs, -rs: run presto server
+    help, -h: show this help
+    runc, -rc: run presto on chrome
+    buildw, -bw: build web release
+    gen, -g: generate presto
+   
+
+$(tput sgr0)"
+}
+
+if [[ $# -eq 1 ]]; then
+    case $1 in
+    runs | -rs)
+        cd server && nodemon .
+        ;;
+    runc | -rc)
+        flutter run -d chrome
+        ;;
+    buildw | -bw)
+        flutter build web --release
+        ;;
+    gen | -g)
+        cd server && prisma generate
+        ;;
+    login | -l)
+        $LOGIN
+        ;;
+    push | -p)
+        flutter build web --release
+        git add .
+        git commit -m "update"
+        git push origin main
+        ;;
+    *) echo "-h help" ;;
+    esac
+else
+    help
+fi

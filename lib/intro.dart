@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/get.dart';
 import 'package:mobile_report/Val.dart';
+import 'package:mobile_report/my_router.dart';
 import 'package:mobile_report/splash.dart';
 
 import 'pref.dart';
@@ -13,19 +14,22 @@ class Intro extends StatelessWidget {
   final pageIndex = 0.obs;
   final listIntro = [
     IntroItem(
-      title: "Judul Satu",
-      subTitle: "sub title",
-      bgColor: Colors.blue
+      title: "Total Bill",
+      subTitle: "You keep track of your business through restaurant analytics. Restaurant mobile analytic can give specific billing details for each outlet",
+      bgColor: Colors.blue,
+      image: "https://i.postimg.cc/k5jBXRP5/image.png",
     ),
     IntroItem(
-      title: "Judul dua",
-      subTitle: "sub dua",
-      bgColor: Colors.green
+      title: "Items Sold Count",
+      subTitle: "Restaurant mobile analytic app is integrated with the POS which gives the total number of total items that have been sold in that day.",
+      bgColor: Colors.green,
+      image: "https://i.postimg.cc/W1hz3bSp/image.png",
     ),
     IntroItem(
-      title: "Judul tiga",
-      subTitle: "sub tiga",
-      bgColor: Colors.red
+      title: "Total Sale Details",
+      subTitle: "The entire sales data is available for your use and can be seen on the basis of day, week, month, or annual. You can view the net sales, gross sales, the total number of bills generated,",
+      bgColor: Colors.red,
+      image: "https://i.postimg.cc/0j0MpWJ8/image.png",
     )
   ].obs;
 
@@ -38,22 +42,57 @@ class Intro extends StatelessWidget {
             future: onLoad(),
             builder: (context, snapshot) => Text(""),
           ),
-          PageView(
-            onPageChanged: (value) => pageIndex.value = value,
-            controller: controller,
-            children: [
-              for (final a in listIntro)
-                Stack(
-                  children: [
-                    Container(
-                      color: a.bgColor,
-                      child: Center(
-                        child: Text(a.title!),
-                      ),
+          Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: 500
+              ),
+              child: PageView(
+                onPageChanged: (value) => pageIndex.value = value,
+                controller: controller,
+                children: [
+                  for (final a in listIntro)
+                    Stack(
+                      children: [
+                        Container(
+                          color: a.bgColor,
+                          child: Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Image.network(a.image!, width: 200, fit: BoxFit.contain,),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    a.title!,
+                                    style: TextStyle(
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    a.subTitle!,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                                
+            
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
                     )
-                  ],
-                )
-            ],
+                ],
+              ),
+            ),
           ),
           Positioned(
             bottom: 0,
@@ -88,7 +127,7 @@ class Intro extends StatelessWidget {
                     pageIndex.value == (listIntro.length -1) ? TextButton(
                       onPressed: () {
                         Pref.isIntro().set(false);
-                        Get.off(Splash());
+                        MyRouter.root().goOff();
                       },
                       child: Text("NEXT",
                         style: TextStyle(
@@ -116,6 +155,7 @@ class IntroItem{
   String? subTitle;
   String? image;
   Color? bgColor;
+  IconData? icon;
 
-  IntroItem({this.title, this.subTitle, this.image, this.bgColor});
+  IntroItem({this.title, this.subTitle, this.image, this.bgColor, this.icon});
 }

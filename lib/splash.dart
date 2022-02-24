@@ -6,6 +6,7 @@ import 'package:mobile_report/app/home.dart';
 import 'package:mobile_report/app/v2_home.dart';
 import 'package:mobile_report/intro.dart';
 import 'package:mobile_report/login.dart';
+import 'package:mobile_report/my_router.dart';
 import 'package:mobile_report/v2_val.dart';
 
 import 'pref.dart';
@@ -67,16 +68,16 @@ class _SplashState extends State<Splash> {
 
     await 3.delay();
     if (V2Val.isIntro.value) {
-      Get.offAll(Intro());
+      MyRouter.intro().goOff();
       return;
     }
 
     print(V2Val.user.value);
     if (V2Val.user.value.email == null) {
-      Get.offAll(Login());
+      MyRouter.login().goOff();
       return;
     }
 
-    Get.offAll(V2Home());
+    MyRouter.home().goOff();
   }
 }

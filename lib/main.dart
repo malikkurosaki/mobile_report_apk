@@ -8,6 +8,7 @@ import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobile_report/Val.dart';
 import 'package:mobile_report/models.dart';
+import 'package:mobile_report/my_router.dart';
 import 'package:mobile_report/splash.dart';
 import 'package:mobile_report/v2_models.dart';
 import 'package:mobile_report/v2_pref.dart';
@@ -32,9 +33,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: V2Splash(),
-
-      // inisialize untuk bantuan easy loading
+      title: 'Mobile Report',
+      initialRoute: '/',
+      getPages: MyRouter.listPage,
       builder: EasyLoading.init(),
     );
   }

@@ -48,6 +48,9 @@ dependencies:
   webviewx: ^0.2.1
   easy_web_view2: ^0.0.3
   dart_eval: ^0.0.4
+  flutter_native_splash: ^2.0.5
+  responsive_builder: ^0.4.2
+  dio: ^4.0.4
 
 dev_dependencies:
   flutter_test:

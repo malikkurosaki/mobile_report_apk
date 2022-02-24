@@ -1,18 +1,12 @@
-import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:mobile_report/Val.dart';
 import 'package:mobile_report/app/dashboard.dart';
 import 'package:mobile_report/app/home_appbar.dart';
 import 'package:mobile_report/app/home_tabbar.dart';
 import 'package:mobile_report/app/view_sales_avarage.dart';
 import 'package:mobile_report/app/view_sales_performance.dart';
-import 'package:mobile_report/conn.dart';
-import 'package:get/get.dart';
-import 'package:mobile_report/models.dart';
+import 'package:mobile_report/config.dart';
 import 'package:mobile_report/util.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -24,6 +18,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   void initState() {
+    print(Config.getUrl);
     Util().init();
     Util().loadDashboard();
     super.initState();
