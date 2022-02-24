@@ -40,10 +40,12 @@ if [[ $# -eq 1 ]]; then
         $LOGIN
         ;;
     push | -p)
+        echo $ENV_PRO > server/.env
         flutter build web --release
         git add .
         git commit -m "update"
         git push origin main
+         echo $ENV_DEV > server/.env
         ;;
     *) echo "-h help" ;;
     esac
