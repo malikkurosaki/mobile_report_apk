@@ -19,6 +19,7 @@ Options:
     gen, -g: generate presto
     login, -l: login to server
     push, -p: push to server
+    seed , -s: seed database
    
 
 $(tput sgr0)"
@@ -49,6 +50,12 @@ if [[ $# -eq 1 ]]; then
         git push origin main
         echo $ENV_DEV >server/.env
         $LOGIN -t "cd mobile_report_apk && git pull origin main && cd server && source ~/.nvm/nvm.sh && npm install && prisma generate "
+        ;;
+    seed | -s)
+        cd server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js
+        ;;
+    seeds | -ss)
+        $LOGIN -t "cd mobile_report_apk/server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js"
         ;;
     *) echo "-h help" ;;
     esac
