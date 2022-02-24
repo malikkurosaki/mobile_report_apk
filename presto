@@ -17,6 +17,8 @@ Options:
     runc, -rc: run presto on chrome
     buildw, -bw: build web release
     gen, -g: generate presto
+    login, -l: login to server
+    push, -p: push to server
    
 
 $(tput sgr0)"
@@ -40,12 +42,13 @@ if [[ $# -eq 1 ]]; then
         $LOGIN
         ;;
     push | -p)
-        echo $ENV_PRO > server/.env
+        echo $ENV_PRO >server/.env
         flutter build web --release
         git add .
         git commit -m "update"
         git push origin main
-         echo $ENV_DEV > server/.env
+        echo $ENV_DEV >server/.env
+        $LOGIN -t "cd mobile_report_apk && ls"
         ;;
     *) echo "-h help" ;;
     esac
