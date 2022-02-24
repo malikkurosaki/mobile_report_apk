@@ -4,7 +4,7 @@
 TIME=$(date +%Y%m%d%H%M%S)
 LOGIN="sshpass -p StartOurDream2022 ssh posapp@116.193.191.104"
 ENV_DEV="DATABASE_URL=\"mysql://root:Makuro_123@localhost:3306/dbreportmobile\""
-ENV_PRO="DATABASE_URL=\"mysql://probus:7971515@localhost:3306/dbreportmobile\""
+ENV_PRO="DATABASE_URL=\"mysql://probus:7971515@localhost:3306/dbtgho\""
 help() {
     echo "$(tput setaf 2)
 Name:
@@ -54,8 +54,8 @@ if [[ $# -eq 1 ]]; then
     seed | -s)
         cd server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js
         ;;
-    seeds | -ss)
-        $LOGIN -t "cd mobile_report_apk/server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js"
+    seeds | -se)
+        $LOGIN -t "source ~/.nvm/nvm.sh && cd seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js && npm install && prisma generate"
         ;;
     *) echo "-h help" ;;
     esac
