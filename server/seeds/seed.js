@@ -4,13 +4,13 @@ const prisma = new PrismaClient();
 const listAuth = [
     {
         id: 1,
-        name: "admin",
+        username: "admin",
         password: "admin",
         email: "admin@gmail.com"
     },
     {
         id: 2,
-        name: "user",
+        username: "user",
         password: "user",
         email: "user@gmail.com"
     }
