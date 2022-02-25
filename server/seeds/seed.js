@@ -10,23 +10,27 @@ const listAuth = [
     },
     {
         id: 2,
-        username: "user",
+        name: "user",
         password: "user",
         email: "user@gmail.com"
     }
 ]
 
-; (async () => {
-    await prisma.auth.deleteMany({
-        where: {
-            id: {
-               not: 0
-            }
-        }
-    });
-    await prisma.auth.createMany({
-        data: listAuth
-    });
+    ; (async () => {
+        try {
+            await prisma.auth.deleteMany({
+                where: {
+                    id: {
+                        not: 0
+                    }
+                }
+            });
+            await prisma.auth.createMany({
+                data: listAuth
+            });
 
-    console.log("seed berhasil")
-})()
+            console.log("seed berhasil")
+        } catch (error) {
+            console.log(error);
+        }
+    })()
