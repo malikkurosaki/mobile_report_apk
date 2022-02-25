@@ -9,6 +9,7 @@ const cors = require('cors');
 
 App.use(cors());
 App.use(express.static('./../build/web'));
+App.use(express.static('./../web'));
 App.use(express.urlencoded({extended: true}));
 App.use(express.json())
 App.use(Web);

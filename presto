@@ -50,45 +50,61 @@ Options:
 $(tput sgr0)"
 }
 
-if [[ $# -eq 1 ]]; then
-    case $1 in
-    runs | -rs)
-        cd server && nodemon .
-        ;;
-    runc | -rc)
-        flutter run -d chrome
-        ;;
-    buildw | -bw)
-        flutter build web --release
-        ;;
-    gen | -g)
-        cd server && prisma generate
-        ;;
-    login | -l)
-        $LOGIN
-        ;;
-    push | -p)
-        echo $ENV_PRO >server/.env
-        # echo -e $CONFIG_PRO > lib/config.dart
-        flutter build web --release
-        git add .
-        git commit -m "$TIME"
-        git push origin main
-        echo $ENV_DEV >server/.env
-        #  echo -e $CONFIG_DEV > lib/config.dart
-        $LOGIN -t "source ~/.nvm/nvm.sh && pm2 stop all && cd mobile_report_apk && git pull origin main && cd server &&  npm install && prisma generate && pm2 restart all"
-        ;;
-    seed | -s)
-        cd server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js
-        ;;
-    seeds | -se)
-        $LOGIN -t "source ~/.nvm/nvm.sh && cd mobile_report_apk/server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js && cd .. && ls"
-        ;;
-    help | -h)
-        help
-        ;;
-    *) echo "-h help" ;;
+case $1 in
+runs | -rs)
+    cd server && nodemon .
+    ;;
+runc | -rc)
+    flutter run -d chrome
+    ;;
+buildw | -bw)
+    flutter build web --release
+    ;;
+gen | -g)
+    cd server && prisma generate
+    ;;
+login | -l)
+    $LOGIN
+    ;;
+push | -p)
+    echo -e $ENV_PRO >server/.env
+    echo -e $CONFIG_PRO > lib/config.dart
+    flutter build web --release
+    git add .
+    git commit -m "$TIME"
+    git push origin main
+    echo -e $ENV_DEV > server/.env
+     echo -e $CONFIG_DEV > lib/config.dart
+    $LOGIN -t "source ~/.nvm/nvm.sh && pm2 stop all && cd mobile_report_apk && git pull origin main && cd server &&  npm install && prisma generate && pm2 restart all"
+    ;;
+seed | -s)
+    cd server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js
+    ;;
+seeds | -se)
+    $LOGIN -t "source ~/.nvm/nvm.sh && cd mobile_report_apk/server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js && cd .. && ls"
+    ;;
+ctbl | -ct)
+    CRT="
+    DROP TABLE IF EXISTS Auth;
+    CREATE TABLE Auth(
+        id Int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    SELECT * FROM Auth;"
+    case $2 in
+    -c) mysql -uroot -pMakuro_123 -hlocalhost -P3306 -Ddbreportmobile -e "$CRT" ;;
+    -s) $LOGIN -t "mysql -uprobus -p7971515 -hlocalhost -P3306 -Ddbtgho -e \"$CRT\"" ;;
+    *) echo "Please input -c or -s" ;;
     esac
-else
+
+    ;;
+
+help | -h)
     help
-fi
+    ;;
+*) echo "-h help" ;;
+esac

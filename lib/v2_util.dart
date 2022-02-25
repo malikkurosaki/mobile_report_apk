@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:mobile_report/models.dart';
@@ -85,16 +86,19 @@ class V2Util {
   }
 
   Future login(Map<String, dynamic> body) async {
-   
+    final data = await Dio().get("https://google.com");
+    print(data.data);
+
     try {
-      final data = await V2Conn().login(body);
-      if (data.body['success']) {
-        // V2Val.user.value = V2ModelUser.fromJson(data.body['data']);
-        V2Pref.user().set(data.body['data']);
-        MyRouter.root().goOff();
-      } else {
-        EasyLoading.showError(data.body['message']);
-      }
+      // final data = await V2Conn().login(body);
+      // print(data.body);
+      // if (data.body['success']) {
+      //   // V2Val.user.value = V2ModelUser.fromJson(data.body['data']);
+      //   V2Pref.user().set(data.body['data']);
+      //   MyRouter.root().goOff();
+      // } else {
+      //   EasyLoading.showError(data.body['message']);
+      // }
     } catch (e) {
       ErrorLog().create("V2util:login", e.toString());
     }
