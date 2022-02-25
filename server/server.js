@@ -7,7 +7,14 @@ const PORT = process.env.PORT || 3100
 const cors = require('cors');
 
 
-App.use(cors());
+App.use(cors({
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'X-Access-Token', 'Authorization'],
+    credentials: true,
+    exposedHeaders: ['Access-Control-Allow-Headers', 'Authorization'],
+    methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+    origin: '*',
+    preflightContinue: false
+}));
 App.use(express.static('./../build/web'));
 App.use(express.static('./../web'));
 App.use(express.urlencoded({extended: true}));
