@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
+HOST="116.193.191.104"
+PORT="3100"
 
 # get time
 TIME=$(date +%Y%m%d%H%M%S)
-LOGIN="sshpass -p StartOurDream2022 ssh posapp@116.193.191.104"
+LOGIN="sshpass -p StartOurDream2022 ssh posapp@$HOST"
 ENV_DEV="DATABASE_URL=\"mysql://root:Makuro_123@localhost:3306/dbreportmobile\""
 ENV_PRO="DATABASE_URL=\"mysql://probus:7971515@localhost:3306/dbtgho\""
 CONFIG_DEV="
 class Config{
     static const isDevAndroid = false;
     static const isDevWeb = true;
-    static const weblUrl = 'http://localhost:3000/apiv2';
-    static const androidUrl = 'http://10.0.2.2:3000/apiv2';
-    static const serverUrl = 'https://188.166.218.138:3000/apiv2';
+    static const weblUrl = 'http://localhost:$PORT/apiv2';
+    static const androidUrl = 'http://10.0.2.2:$PORT/apiv2';
+    static const serverUrl = 'https://$HOST:$PORT/apiv2';
     static const getUrl = isDevAndroid? androidUrl : isDevWeb? weblUrl : serverUrl;
 }
 "
@@ -20,9 +22,9 @@ CONFIG_PRO="
 class Config{
   static const isDevAndroid = false;
   static const isDevWeb = false;
-  static const weblUrl = 'http://localhost:3000/apiv2';
-  static const androidUrl = 'http://10.0.2.2:3000/apiv2';
-  static const serverUrl = 'https://188.166.218.138:3000/apiv2';
+  static const weblUrl = 'http://localhost:$PORT/apiv2';
+  static const androidUrl = 'http://10.0.2.2:$PORT/apiv2';
+  static const serverUrl = 'https://$HOST:$PORT/apiv2';
   static const getUrl = isDevAndroid? androidUrl : isDevWeb? weblUrl : serverUrl;
 }
 "
