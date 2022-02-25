@@ -34,6 +34,7 @@ Usage:
     presto [options] | ./presto [options]
 Options: 
     runs, -rs: run presto server
+    runc, -rc: run presto client
     help, -h: show this help
     runc, -rc: run presto on chrome
     buildw, -bw: build web release
@@ -79,6 +80,9 @@ if [[ $# -eq 1 ]]; then
         ;;
     seeds | -se)
         $LOGIN -t "source ~/.nvm/nvm.sh && cd seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js && npm install && prisma generate"
+        ;;
+    help | -h)
+        help
         ;;
     *) echo "-h help" ;;
     esac
