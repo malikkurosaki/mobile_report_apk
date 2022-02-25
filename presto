@@ -26,7 +26,7 @@ class Config{
   static const weblUrl = 'http://localhost:$PORT/apiv2';
   static const androidUrl = 'http://10.0.2.2:$PORT/apiv2';
   static const serverUrl = 'https://$HOST:$PORT/apiv2';
-  static const getUrl = isDevAndroid? androidUrl : isDevWeb? weblUrl : serverUrl;
+  static const getUrl = isDevAndroid? androidUrl : isDevWeb? weblUrl :  weblUrl;
 }
 "
 help() {
@@ -81,7 +81,7 @@ seed | -s)
     cd server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js
     ;;
 seeds | -se)
-    $LOGIN -t "source ~/.nvm/nvm.sh && cd mobile_report_apk/server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js && cd .. && ls"
+    $LOGIN -t "source ~/.nvm/nvm.sh && pm2 stop all && cd mobile_report_apk && ./presto -s && pm2 restart all"
     ;;
 ctbl | -ct)
     CRT="
