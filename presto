@@ -5,8 +5,9 @@ PORT="3100"
 # get time
 TIME=$(date +%Y%m%d%H%M%S)
 LOGIN="sshpass -p StartOurDream2022 ssh posapp@$HOST"
-ENV_DEV="DATABASE_URL=\"mysql://root:Makuro_123@localhost:3306/dbreportmobile\""
+ENV_DEV="DATABASE_URL=\"mysql://root:Makuro_123@localhost:3306/dbtgho\""
 ENV_PRO="DATABASE_URL=\"mysql://probus:7971515@localhost:3306/dbtgho\""
+
 CONFIG_DEV="
 class Config{
     static const isDevAndroid = false;
@@ -81,7 +82,7 @@ if [[ $# -eq 1 ]]; then
         cd server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js
         ;;
     seeds | -se)
-        $LOGIN -t "source ~/.nvm/nvm.sh && cd seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js && npm install && prisma generate"
+        $LOGIN -t "source ~/.nvm/nvm.sh && cd mobile_report_apk/server/seeds && node create_table.js && cd .. && prisma generate && cd seeds && node seed.js && cd .. && ls"
         ;;
     help | -h)
         help
