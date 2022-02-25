@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 const listAuth = [
     {
         id: 1,
-        username: "admin",
+        name: "admin",
         password: "admin",
         email: "admin@gmail.com"
     },
