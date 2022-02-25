@@ -28,7 +28,7 @@ class Config{
   static const weblUrl = 'http://$HOST_SER:$PORT/apiv2';
   static const androidUrl = 'http://$HOST_AN:$PORT/apiv2';
   static const serverUrl = 'https://$HOST:$PORT/apiv2';
-  static const getUrl = isDevAndroid? androidUrl : isDevWeb? weblUrl :  weblUrl;
+  static const getUrl = isDevAndroid? androidUrl : isDevWeb? weblUrl :  serverUrl;
 }
 "
 help() {
