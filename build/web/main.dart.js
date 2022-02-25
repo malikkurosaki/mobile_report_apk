@@ -67677,7 +67677,7 @@ var $async$vf=A.O(function(a,b){if(a===1){p=b
 s=q}while(true)switch(s){case 0:q=3
 l=A.id()
 s=6
-return A.Y(l.hq(0,"https://116.193.191.104:3100/apiv2/"+l.l8("food"),t.z),$async$vf)
+return A.Y(l.hq(0,"http://116.193.191.104:3100/apiv2/"+l.l8("food"),t.z),$async$vf)
 case 6:n=b
 l=$.agP()
 k=new A.ie()
@@ -67706,7 +67706,7 @@ var $async$ve=A.O(function(a,b){if(a===1){p=b
 s=q}while(true)switch(s){case 0:q=3
 l=A.id()
 s=6
-return A.Y(l.hq(0,"https://116.193.191.104:3100/apiv2/"+l.l8("beverage"),t.z),$async$ve)
+return A.Y(l.hq(0,"http://116.193.191.104:3100/apiv2/"+l.l8("beverage"),t.z),$async$ve)
 case 6:n=b
 l=$.agO()
 k=new A.ie()
@@ -67731,7 +67731,7 @@ var $async$vi=A.O(function(a,b){if(a===1){p=b
 s=q}while(true)switch(s){case 0:q=3
 l=A.id()
 s=6
-return A.Y(l.hq(0,"https://116.193.191.104:3100/apiv2/"+l.l8("other"),t.z),$async$vi)
+return A.Y(l.hq(0,"http://116.193.191.104:3100/apiv2/"+l.l8("other"),t.z),$async$vi)
 case 6:n=b
 l=$.agQ()
 k=new A.ie()
@@ -67756,7 +67756,7 @@ var $async$vg=A.O(function(a,b){if(a===1){p=b
 s=q}while(true)switch(s){case 0:q=3
 l=t.z
 s=6
-return A.Y(A.id().hq(0,"https://116.193.191.104:3100/apiv2/masterDep",l),$async$vg)
+return A.Y(A.id().hq(0,"http://116.193.191.104:3100/apiv2/masterDep",l),$async$vg)
 case 6:n=b
 l=A.bt(n.r,!0,l)
 m=new A.aq(l,new A.a7L(),A.ap(l).i("aq<1,jg>"))
@@ -67782,7 +67782,7 @@ var $async$vh=A.O(function(a,b){if(a===1){p=b
 s=q}while(true)switch(s){case 0:q=3
 k=t.z
 s=6
-return A.Y(A.id().hq(0,"https://116.193.191.104:3100/apiv2/masterOut",k),$async$vh)
+return A.Y(A.id().hq(0,"http://116.193.191.104:3100/apiv2/masterOut",k),$async$vh)
 case 6:n=b
 k=A.bt(n.r,!0,k)
 j=A.ap(k).i("aq<1,jh>")
@@ -67813,7 +67813,7 @@ l=A.id()
 k=t.z
 if(l.go)A.M("Can not emit events to disposed clients")
 s=6
-return A.Y(l.gME().vN("https://116.193.191.104:3100/apiv2/login",a,null,null,null,null,null,k),$async$vp)
+return A.Y(l.gME().vN("http://116.193.191.104:3100/apiv2/login",a,null,null,null,null,null,k),$async$vp)
 case 6:n=c
 A.kQ(n.r)
 if(J.a5(n.r,"success")){l=J.a5(n.r,"data")
@@ -67838,7 +67838,7 @@ var $async$vl=A.O(function(a,b){if(a===1){p=b
 s=q}while(true)switch(s){case 0:q=3
 m=A.id()
 s=6
-return A.Y(m.hq(0,"https://116.193.191.104:3100/apiv2/"+m.l8("totalRevenue"),t.z),$async$vl)
+return A.Y(m.hq(0,"http://116.193.191.104:3100/apiv2/"+m.l8("totalRevenue"),t.z),$async$vl)
 case 6:n=b
 m=$.ajZ()
 l=n.r
@@ -67867,7 +67867,7 @@ s=q}while(true)switch(s){case 0:q=3
 m=A.id()
 l=$.m9()
 s=6
-return A.Y(m.hq(0,"https://116.193.191.104:3100/apiv2/salesPerformanceWeek?date="+J.bc(l.gl(l)),t.z),$async$vk)
+return A.Y(m.hq(0,"http://116.193.191.104:3100/apiv2/salesPerformanceWeek?date="+J.bc(l.gl(l)),t.z),$async$vk)
 case 6:n=b
 $.ar_().sl(0,A.anG(n.r))
 q=1
@@ -67889,7 +67889,7 @@ s=q}while(true)switch(s){case 0:q=3
 m=A.id()
 l=$.m9()
 s=6
-return A.Y(m.hq(0,"https://116.193.191.104:3100/apiv2/salesPerformanceMonth?date="+J.bc(l.gl(l)),t.z),$async$vj)
+return A.Y(m.hq(0,"http://116.193.191.104:3100/apiv2/salesPerformanceMonth?date="+J.bc(l.gl(l)),t.z),$async$vj)
 case 6:n=b
 $.aqZ().sl(0,A.anG(n.r))
 q=1
@@ -67911,7 +67911,7 @@ s=q}while(true)switch(s){case 0:q=3
 l=A.id()
 k=t.z
 s=6
-return A.Y(l.hq(0,"https://116.193.191.104:3100/apiv2/"+l.l8("top10Food"),k),$async$vn)
+return A.Y(l.hq(0,"http://116.193.191.104:3100/apiv2/"+l.l8("top10Food"),k),$async$vn)
 case 6:n=b
 A.kQ(n.r)
 l=$.ajX()
@@ -67938,7 +67938,7 @@ s=q}while(true)switch(s){case 0:q=3
 l=A.id()
 k=t.z
 s=6
-return A.Y(l.hq(0,"https://116.193.191.104:3100/apiv2/"+l.l8("top10Beverage"),k),$async$vm)
+return A.Y(l.hq(0,"http://116.193.191.104:3100/apiv2/"+l.l8("top10Beverage"),k),$async$vm)
 case 6:n=b
 l=$.ajW()
 k=A.bt(n.r,!0,k)
@@ -67964,7 +67964,7 @@ s=q}while(true)switch(s){case 0:q=3
 l=A.id()
 k=t.z
 s=6
-return A.Y(l.hq(0,"https://116.193.191.104:3100/apiv2/"+l.l8("top10Other"),k),$async$vo)
+return A.Y(l.hq(0,"http://116.193.191.104:3100/apiv2/"+l.l8("top10Other"),k),$async$vo)
 case 6:n=b
 l=$.ajY()
 k=A.bt(n.r,!0,k)

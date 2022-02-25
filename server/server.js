@@ -6,7 +6,6 @@ const App = express();
 const PORT = process.env.PORT || 3100
 const cors = require('cors');
 
-
 App.use(cors());
 App.use(express.static('./../build/web'));
 App.use(express.static('./../web'));
