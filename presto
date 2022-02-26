@@ -38,16 +38,16 @@ Name:
 Usage:
     presto [options] | ./presto [options]
 Options: 
-    runs, -rs: run presto server
-    runc, -rc: run presto client
-    help, -h: show this help
-    runc, -rc: run presto on chrome
-    buildw, -bw: build web release
-    gen, -g: generate presto
-    login, -l: login to server
-    push, -p: push to server
-    seed , -s: seed database
-   
+    -rs, runs: run presto server
+    -rc, runc: run presto client
+    -h, help: show this help
+    -rc, runc: run presto on chrome
+    -bw, buildw: build web release
+    -g, gen: generate presto
+    -l, login: login to server
+    -p, push: push to server
+    -s, seed: seed database
+    -ct, crtbl: create table
 
 $(tput sgr0)"
 }
@@ -85,7 +85,7 @@ seed | -s)
 seeds | -se)
     $LOGIN -t "source ~/.nvm/nvm.sh && pm2 stop all && cd mobile_report_apk && ./presto -s && pm2 restart all"
     ;;
-ctbl | -ct)
+crtbl | -ct)
     CRT="
     DROP TABLE IF EXISTS Auth;
     CREATE TABLE Auth(
@@ -108,5 +108,5 @@ ctbl | -ct)
 help | -h)
     help
     ;;
-*) echo "-h help" ;;
+*) help ;;
 esac

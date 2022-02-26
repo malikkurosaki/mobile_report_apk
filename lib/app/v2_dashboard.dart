@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_report/app/v2_dashboard_detail.dart';
 import 'package:mobile_report/app/v2_detail_total_revenue.dart';
+import 'package:mobile_report/pref.dart';
 import 'package:mobile_report/v2_val.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -52,7 +53,24 @@ class V2Dashboard extends StatelessWidget {
                           Container(
                             margin: EdgeInsets.all(8),
                             height: 200,
+                            width: double.infinity,
                             color: Colors.white,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Icon(Icons.account_circle, size: 53,color: Colors.blue,),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "Welcome, ${Pref.user().get()['name']}",
+                                    style: TextStyle(fontSize: 18, color: Colors.grey[800]),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           ListTile(
                             title: Text("DashBoard"),
@@ -67,6 +85,29 @@ class V2Dashboard extends StatelessWidget {
                         Expanded(
                           child: ListView(
                             children: [
+                              Visibility(
+                                visible: b.isMobile,
+                                child: Card(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Icon(Icons.account_box_sharp,
+                                              size: 36,
+                                            ),
+                                            Text(Pref.user().get()['name'].toString().toUpperCase(),
+                                              style: TextStyle(fontSize: 24,),
+                                            )
+                                          ],
+                                        ),
+                                        
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                               V2DashboardPanel(),
                               V2DashboadItemCard(
                                 heroTag1: "food",

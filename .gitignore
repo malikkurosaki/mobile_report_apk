@@ -49,5 +49,6 @@ app.*.map.json
 !server/prisma/
 build/*
 !build/web
+dbtgho.sql
 
 
